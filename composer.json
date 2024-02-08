@@ -1,0 +1,33 @@
+{
+    "name": "embloy/embloy-php",
+    "type": "library",
+    "description": " Embloy's PHP SDK for interacting with your Embloy integration",
+    "keywords": ["sdk","sdk-php", "composer-package"],
+    "homepage": "https://github.com/embloy/embloy-php",
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Carlo Bortolan",
+            "email": "carlobortolan@gmail.com",
+            "homepage": "https://developers.embloy.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Embloy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}
