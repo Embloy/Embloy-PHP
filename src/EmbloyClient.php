@@ -34,8 +34,11 @@ class EmbloyClient {
 
         $headers = [
             'client_token' => $this->clientToken,
-            'User-Agent' => 'embloy/0.1.2-beta.20 (PHP)',
+            'User-Agent' => 'Mozilla/5.0 (compatible; embloy-php/0.1.2-beta.21)',
             'Content-Type' => 'application/json',
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
+            'Access-Control-Allow-Headers' => 'Content-Type, Accept, Authorization, X-Requested-With, Application',    
         ];
 
         try {
