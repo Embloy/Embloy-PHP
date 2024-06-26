@@ -1,0 +1,20 @@
+name: Create Release Tag
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Create Tag
+        run: |
+          TAG_NAME=$(date +v%Y%m%d-%H%M%S)
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
