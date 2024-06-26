@@ -13,7 +13,7 @@ class EmbloyClientTest extends TestCase {
             ->disableOriginalConstructor()
             ->getMock();
 
-        // Define the expected data and updated headers to include CORS
+        // Define the expected data
         $expectedData = [
             'mode' => 'test_mode',
             'job_slug' => 'test_job_slug',
@@ -23,22 +23,19 @@ class EmbloyClientTest extends TestCase {
         $expectedHeaders = [
             'client_token' => 'test_client_token',
             'User-Agent' => 'Mozilla/5.0 (compatible; embloy-php/0.1.2-beta.21)',
-            'Content-Type' => 'application/json',
-            'Access-Control-Allow-Origin' => '*', // CORS header
-            'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE', // CORS header
-            'Access-Control-Allow-Headers' => 'Content-Type, Accept, Authorization, X-Requested-With, Application', // CORS header
+            // 'Content-Type' header is not needed for form_params
         ];
 
         // Create a mock response
         $responseBody = json_encode(['request_token' => 'test_request_token']);
         $mockResponse = new Response(200, [], $responseBody);
 
-        // Configure the mock client to return the mock response with the expected headers
+        // Configure the mock client to return the mock response with the expected headers and form_params
         $mockClient->expects($this->once())
             ->method('post')
             ->with(
                 $this->equalTo('https://api.embloy.com/api/v0/sdk/request/auth/token'),
-                $this->equalTo(['json' => $expectedData, 'headers' => $expectedHeaders])
+                $this->equalTo(['form_params' => $expectedData, 'headers' => $expectedHeaders])
             )
             ->willReturn($mockResponse);
 

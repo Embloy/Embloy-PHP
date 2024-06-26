@@ -35,15 +35,11 @@ class EmbloyClient {
         $headers = [
             'client_token' => $this->clientToken,
             'User-Agent' => 'Mozilla/5.0 (compatible; embloy-php/0.1.2-beta.21)',
-            'Content-Type' => 'application/json',
-            'Access-Control-Allow-Origin' => '*',
-            'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
-            'Access-Control-Allow-Headers' => 'Content-Type, Accept, Authorization, X-Requested-With, Application',    
         ];
 
         try {
             $response = $this->httpClient->post("{$this->apiUrl}/{$this->apiVersion}/sdk/request/auth/token", [
-                'json' => $data,
+                'form_params' => $data,
                 'headers' => $headers,
             ]);
 
